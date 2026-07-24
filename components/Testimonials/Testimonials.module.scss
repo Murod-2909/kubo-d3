@@ -1,0 +1,115 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.testimonials {
+  padding: $space-7 0;
+  background: $color-bg-alt;
+  border-top: 1px solid $color-border;
+}
+
+.inner {
+  @include container;
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-3;
+  margin-bottom: $space-6;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statCard {
+  @include card;
+  padding: $space-3;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  strong {
+    font-family: $font-display;
+    font-size: 2rem;
+    color: $color-accent;
+    font-weight: 500;
+  }
+
+  span {
+    color: $color-text;
+    font-size: 0.92rem;
+  }
+
+  em {
+    font-style: normal;
+    color: $color-text-faint;
+    font-size: 0.76rem;
+  }
+}
+
+.header {
+  max-width: 640px;
+  margin-bottom: $space-5;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: $space-3;
+}
+
+.title {
+  font-size: $fs-h2;
+  color: $color-text;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-3;
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  @include card;
+  padding: $space-4;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.quote {
+  font-family: $font-display;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: $color-text;
+  font-weight: 400;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  margin-top: auto;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, $color-accent, #4a2210);
+}
+
+.name {
+  font-size: 0.92rem;
+  color: $color-text;
+}
+
+.role {
+  font-size: 0.8rem;
+  color: $color-text-faint;
+}

@@ -1,0 +1,117 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.process {
+  padding: $space-7 0;
+  background: $color-bg;
+}
+
+.inner {
+  @include container;
+}
+
+.header {
+  max-width: 640px;
+  margin-bottom: $space-6;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: $space-3;
+}
+
+.title {
+  font-size: $fs-h2;
+  color: $color-text;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-4;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step {
+  @include card;
+  padding: $space-4;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: border-color $dur-fast $ease-out, transform $dur-fast $ease-out;
+
+  &:hover {
+    border-color: $color-border-strong;
+    transform: translateY(-4px);
+  }
+
+  &:not(:last-child)::after {
+    content: "\2192";
+    position: absolute;
+    top: $space-4;
+    right: -1.4rem;
+    color: $color-text-faint;
+    font-size: 1.1rem;
+
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
+}
+
+.stepIndex {
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  color: $color-text-faint;
+  margin-bottom: $space-3;
+}
+
+.stepEyebrow {
+  @include eyebrow;
+  margin-bottom: $space-2;
+
+  &::before {
+    background: $color-accent;
+  }
+}
+
+.stepHeading {
+  font-size: 1.4rem;
+  color: $color-text;
+  margin-bottom: $space-2;
+}
+
+.stepDescription {
+  color: $color-text-muted;
+  font-size: 0.92rem;
+  margin-bottom: $space-4;
+}
+
+.factList {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-top: $space-3;
+  border-top: 1px solid $color-border;
+
+  li {
+    font-size: 0.85rem;
+    color: $color-text-muted;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    &::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: $color-accent;
+      flex-shrink: 0;
+    }
+  }
+}

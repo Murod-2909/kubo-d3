@@ -1,0 +1,96 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.solutions {
+  padding: $space-7 0;
+  background: $color-bg-alt;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+}
+
+.inner {
+  @include container;
+}
+
+.header {
+  max-width: 640px;
+  margin-bottom: $space-6;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: $space-3;
+}
+
+.title {
+  font-size: $fs-h2;
+  color: $color-text;
+  margin-bottom: $space-3;
+}
+
+.subtitle {
+  color: $color-text-muted;
+  font-size: $fs-lead;
+  max-width: 50ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-3;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  @include card;
+  padding: $space-3;
+  transition: border-color $dur-fast $ease-out, transform $dur-fast $ease-out;
+
+  &:hover {
+    border-color: $color-accent;
+    transform: translateY(-4px);
+
+    .cardVisualInner {
+      border-color: $color-accent;
+      transform: rotate(45deg) scale(1.15);
+    }
+  }
+}
+
+.cardVisual {
+  height: 120px;
+  border-radius: $radius-sm;
+  background: linear-gradient(155deg, $color-bg-raised, $color-bg-alt);
+  border: 1px solid $color-border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $space-3;
+  overflow: hidden;
+}
+
+.cardVisualInner {
+  width: 44px;
+  height: 44px;
+  border: 1px solid $color-border-strong;
+  transform: rotate(45deg);
+  transition: transform $dur-med $ease-out, border-color $dur-med $ease-out;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  color: $color-text;
+  margin-bottom: $space-2;
+}
+
+.cardDescription {
+  font-size: 0.88rem;
+  color: $color-text-muted;
+}

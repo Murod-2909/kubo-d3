@@ -1,0 +1,166 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.footer {
+  background: $color-bg-alt;
+  border-top: 1px solid $color-border;
+  padding: $space-6 0 $space-4;
+}
+
+.inner {
+  @include container;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr;
+  gap: $space-6;
+  padding-bottom: $space-6;
+  border-bottom: 1px solid $color-border;
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+    gap: $space-5;
+  }
+}
+
+.brandCol {
+  max-width: 360px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: $font-body;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: $color-text;
+  margin-bottom: $space-3;
+}
+
+.logoMark {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, $color-accent, #7a3418);
+}
+
+.logoAccent {
+  color: $color-accent;
+}
+
+.tagline {
+  color: $color-text-muted;
+  font-size: 0.9rem;
+  margin-bottom: $space-4;
+}
+
+.newsletter {
+  display: flex;
+  gap: 0.5rem;
+
+  input {
+    flex: 1;
+    min-width: 0;
+    background: $color-bg;
+    border: 1px solid $color-border-strong;
+    border-radius: $radius-sm;
+    padding: 0.7rem 0.9rem;
+    color: $color-text;
+    font-size: 0.88rem;
+    font-family: $font-body;
+
+    &::placeholder {
+      color: $color-text-faint;
+    }
+
+    &:focus {
+      border-color: $color-accent;
+      outline: none;
+    }
+  }
+
+  button {
+    @include btn-primary;
+    font-size: 0.85rem;
+    padding: 0.7rem 1.1rem;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 420px) {
+    flex-direction: column;
+  }
+}
+
+.linkCols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-4;
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.linkCol {
+  h4 {
+    font-family: $font-body;
+    font-size: 0.85rem;
+    color: $color-text;
+    margin-bottom: $space-3;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  a {
+    font-size: 0.86rem;
+    color: $color-text-muted;
+
+    &:hover {
+      color: $color-text;
+    }
+  }
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-3;
+  padding-top: $space-4;
+  font-size: 0.8rem;
+  color: $color-text-faint;
+
+  @media (max-width: 560px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.socials {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.socialLink {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $color-border;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  color: $color-text-muted;
+  transition: border-color $dur-fast $ease-out, color $dur-fast $ease-out;
+
+  &:hover {
+    border-color: $color-accent;
+    color: $color-accent;
+  }
+}

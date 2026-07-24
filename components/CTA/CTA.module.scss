@@ -1,0 +1,71 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.cta {
+  position: relative;
+  overflow: hidden;
+  padding: $space-7 0;
+  background: $color-bg;
+  text-align: center;
+}
+
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60vw;
+  height: 40vw;
+  max-width: 800px;
+  max-height: 500px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse, $color-accent-soft 0%, transparent 70%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.inner {
+  @include container;
+  position: relative;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: $space-3;
+}
+
+.title {
+  font-size: $fs-h2;
+  color: $color-text;
+  margin-bottom: $space-3;
+}
+
+.accentText {
+  color: $color-accent;
+  font-style: italic;
+}
+
+.subtitle {
+  color: $color-text-muted;
+  font-size: $fs-lead;
+  max-width: 52ch;
+  margin-bottom: $space-5;
+}
+
+.actions {
+  display: flex;
+  gap: $space-2;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.primaryBtn {
+  @include btn-primary;
+}
+
+.ghostBtn {
+  @include btn-ghost;
+}
