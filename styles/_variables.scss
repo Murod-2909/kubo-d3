@@ -1,0 +1,50 @@
+// ─── Kubo3D design tokens ───────────────────────────────────────────
+// Dark, deep-space studio palette with a warm amber signal color.
+
+// Colors
+$color-bg: #0a0b0d; // base background, near-black warm charcoal
+$color-bg-alt: #121417; // card / section-alt background
+$color-bg-raised: #17191d; // raised surface (cards on cards)
+$color-border: rgba(255, 255, 255, 0.08);
+$color-border-strong: rgba(255, 255, 255, 0.16);
+
+$color-text: #f3f1ec; // warm off-white
+$color-text-muted: #98978f; // secondary text
+$color-text-faint: #5c5b56; // tertiary / disabled
+
+$color-accent: #e8672f; // amber / burnt-orange signal
+$color-accent-hover: #ff7d40;
+$color-accent-soft: rgba(232, 103, 47, 0.12);
+
+// Type
+$font-display: "Fraunces", "Georgia", serif;
+$font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+$font-mono: "IBM Plex Mono", "SFMono-Regular", monospace;
+
+// Type scale
+$fs-eyebrow: 0.72rem;
+$fs-body: 1rem;
+$fs-lead: 1.15rem;
+$fs-h3: 1.75rem;
+$fs-h2: clamp(2rem, 4vw, 3rem);
+$fs-h1: clamp(2.75rem, 6vw, 5rem);
+
+// Spacing scale
+$space-1: 0.5rem;
+$space-2: 1rem;
+$space-3: 1.5rem;
+$space-4: 2rem;
+$space-5: 3rem;
+$space-6: 5rem;
+$space-7: 8rem;
+
+// Layout
+$container-max: 1240px;
+$radius-sm: 8px;
+$radius-md: 14px;
+$radius-lg: 22px;
+
+// Motion
+$ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+$dur-fast: 180ms;
+$dur-med: 420ms;

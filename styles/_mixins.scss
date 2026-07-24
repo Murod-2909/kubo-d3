@@ -1,0 +1,98 @@
+@use "sass:color";
+@use "variables" as *;
+
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+@mixin eyebrow {
+  font-family: $font-mono;
+  font-size: $fs-eyebrow;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color-text-muted;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+
+  &::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: $color-accent;
+    display: inline-block;
+  }
+}
+
+@mixin btn-base {
+  font-family: $font-body;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.85rem 1.5rem;
+  border-radius: $radius-sm;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform $dur-fast $ease-out, background $dur-fast $ease-out,
+    border-color $dur-fast $ease-out, color $dur-fast $ease-out;
+  white-space: nowrap;
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+@mixin btn-primary {
+  @include btn-base;
+  background: $color-accent;
+  color: #140a06;
+
+  &:hover {
+    background: $color-accent-hover;
+  }
+}
+
+@mixin btn-ghost {
+  @include btn-base;
+  background: transparent;
+  color: $color-text;
+  border-color: $color-border-strong;
+
+  &:hover {
+    border-color: $color-text;
+  }
+}
+
+@mixin card {
+  background: $color-bg-alt;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+@mixin fade-up($delay: 0ms) {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp $dur-med $ease-out forwards;
+  animation-delay: $delay;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

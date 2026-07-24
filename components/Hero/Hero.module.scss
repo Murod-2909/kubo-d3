@@ -1,0 +1,285 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp($space-6, 12vw, 10rem) 0 clamp($space-5, 8vw, $space-6);
+  background: $color-bg;
+}
+
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      to right,
+      $color-border 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, $color-border 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, #000 40%, transparent 90%);
+  opacity: 0.6;
+}
+
+.glow {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 720px;
+  max-height: 720px;
+  background: radial-gradient(
+    circle,
+    $color-accent-soft 0%,
+    transparent 70%
+  );
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.inner {
+  @include container;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: $space-6;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+    gap: $space-5;
+  }
+}
+
+.content {
+  max-width: 640px;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: $space-3;
+}
+
+.title {
+  @include fade-up(60ms);
+  font-size: $fs-h1;
+  color: $color-text;
+  margin-bottom: $space-3;
+}
+
+.accentText {
+  color: $color-accent;
+  font-style: italic;
+}
+
+.subtitle {
+  @include fade-up(140ms);
+  font-size: $fs-lead;
+  color: $color-text-muted;
+  max-width: 46ch;
+  margin-bottom: $space-4;
+}
+
+.actions {
+  @include fade-up(220ms);
+  display: flex;
+  gap: $space-2;
+  flex-wrap: wrap;
+  margin-bottom: $space-6;
+}
+
+.primaryBtn {
+  @include btn-primary;
+}
+
+.ghostBtn {
+  @include btn-ghost;
+}
+
+.stats {
+  @include fade-up(300ms);
+  display: flex;
+  gap: $space-5;
+  flex-wrap: wrap;
+  padding-top: $space-4;
+  border-top: 1px solid $color-border;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  strong {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    color: $color-text;
+    font-weight: 500;
+  }
+
+  span {
+    font-size: 0.8rem;
+    color: $color-text-faint;
+  }
+}
+
+// ─── 3D wireframe visual ────────────────────────────────────────────
+.visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+
+  @media (max-width: 960px) {
+    min-height: 280px;
+  }
+}
+
+.scene {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  perspective: 1000px;
+
+  @media (max-width: 500px) {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+.cube {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  animation: spinCube 16s linear infinite;
+
+  @media (max-width: 500px) {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(232, 103, 47, 0.55);
+  background: rgba(232, 103, 47, 0.04);
+}
+
+.front {
+  transform: translateZ(100px);
+}
+.back {
+  transform: translateZ(-100px) rotateY(180deg);
+}
+.right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+.left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+.top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+.bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}
+
+@media (max-width: 500px) {
+  .front {
+    transform: translateZ(75px);
+  }
+  .back {
+    transform: translateZ(-75px) rotateY(180deg);
+  }
+  .right {
+    transform: rotateY(90deg) translateZ(75px);
+  }
+  .left {
+    transform: rotateY(-90deg) translateZ(75px);
+  }
+  .top {
+    transform: rotateX(90deg) translateZ(75px);
+  }
+  .bottom {
+    transform: rotateX(-90deg) translateZ(75px);
+  }
+}
+
+@keyframes spinCube {
+  from {
+    transform: rotateX(-20deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(-20deg) rotateY(360deg);
+  }
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 280px;
+  height: 280px;
+  border: 1px dashed $color-border-strong;
+  border-radius: 50%;
+  animation: spinRing 30s linear infinite;
+}
+
+@keyframes spinRing {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dot1,
+.dot2,
+.dot3 {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $color-accent;
+  box-shadow: 0 0 12px 2px $color-accent;
+}
+
+.dot1 {
+  top: 8%;
+  left: 12%;
+}
+.dot2 {
+  bottom: 14%;
+  right: 8%;
+}
+.dot3 {
+  top: 46%;
+  right: -2%;
+}
+
+.scrollCue {
+  @include container;
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  margin-top: $space-6;
+  color: $color-text-faint;
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  @media (max-width: 960px) {
+    display: none;
+  }
+}
+
+.scrollLine {
+  width: 40px;
+  height: 1px;
+  background: $color-border-strong;
+}
