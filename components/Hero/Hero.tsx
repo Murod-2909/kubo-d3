@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef } from "react";
 import styles from "./Hero.module.scss";
 
 const LOGOS = [
@@ -11,6 +14,22 @@ const LOGOS = [
 
 export default function Hero() {
   const logoTrack = [...LOGOS, ...LOGOS];
+  const visualRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = visualRef.current?.getBoundingClientRect();
+    if (!rect || !wrapRef.current) return;
+    const mx = (e.clientX - rect.left) / rect.width - 0.5;
+    const my = (e.clientY - rect.top) / rect.height - 0.5;
+    wrapRef.current.style.setProperty("--mx", mx.toFixed(3));
+    wrapRef.current.style.setProperty("--my", my.toFixed(3));
+  }
+
+  function handleMouseLeave() {
+    wrapRef.current?.style.setProperty("--mx", "0");
+    wrapRef.current?.style.setProperty("--my", "0");
+  }
 
   return (
     <section className={styles.hero} id="top">
@@ -41,10 +60,18 @@ export default function Hero() {
             </a>
           </div>
 
-          <div className={styles.visual} aria-hidden="true">
+          <div
+            className={styles.visual}
+            aria-hidden="true"
+            ref={visualRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
             <div className={styles.glowOrb} />
-            <div className={styles.heroImageWrap}>
-              <img src="/images/hero-shoe.png" alt="" className={styles.heroImage} />
+            <div className={styles.heroFloat}>
+              <div className={styles.heroImageWrap} ref={wrapRef}>
+                <img src="/images/hero-shoe.png" alt="" className={styles.heroImage} />
+              </div>
             </div>
 
             <svg
