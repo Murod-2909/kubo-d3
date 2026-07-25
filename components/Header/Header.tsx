@@ -8,16 +8,19 @@ const PRODUCT_MENU = [
     title: "Xususiyatlar",
     caption: "Interaktiv 3D · AR · AI",
     href: "#product",
+    image: "/images/feature-handbag.jpg",
   },
   {
     title: "Qanday ishlaydi",
     caption: "Capture → Create → Convert",
     href: "#product",
+    image: "/images/how-it-works-chair.jpg",
   },
   {
     title: "Foydalari",
     caption: "Ko'proq xaridorni jalb qiling",
     href: "#product",
+    image: "/images/benefits-sofa.jpg",
   },
 ];
 
@@ -26,16 +29,19 @@ const SOLUTION_MENU = [
     title: "Poyabzal",
     caption: "Har bir tikuvni 3D'da ko'ring",
     href: "#solutions",
+    image: "/images/solution-footwear.jpg",
   },
   {
     title: "Kiyim-kechak",
     caption: "Matoni 3D'da his qiling",
     href: "#solutions",
+    image: "/images/solution-apparel.jpg",
   },
   {
     title: "Mebel",
     caption: "AR orqali xonangizda ko'ring",
     href: "#solutions",
+    image: "/images/solution-furniture.jpg",
   },
 ];
 
@@ -107,8 +113,8 @@ export default function Header() {
                 <div className={styles.megaCols}>
                   {PRODUCT_MENU.map((item) => (
                     <a href={item.href} className={styles.megaCard} key={item.title}>
-                      <span className={styles.megaCardVisual} aria-hidden="true">
-                        <span className={styles.megaCardVisualInner} />
+                      <span className={styles.megaCardVisual}>
+                        <img src={item.image} alt="" />
                       </span>
                       <span className={styles.megaCardTitle}>{item.title}</span>
                       <span className={styles.megaCardCaption}>{item.caption}</span>
@@ -136,8 +142,8 @@ export default function Header() {
                 <div className={styles.megaCols}>
                   {SOLUTION_MENU.map((item) => (
                     <a href={item.href} className={styles.megaCard} key={item.title}>
-                      <span className={styles.megaCardVisual} aria-hidden="true">
-                        <span className={styles.megaCardVisualInner} />
+                      <span className={styles.megaCardVisual}>
+                        <img src={item.image} alt="" />
                       </span>
                       <span className={styles.megaCardTitle}>{item.title}</span>
                       <span className={styles.megaCardCaption}>{item.caption}</span>

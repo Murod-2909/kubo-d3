@@ -129,21 +129,9 @@ $hero-cream: #f2ebe1;
   }
 }
 
-.scene {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  perspective: 1000px;
-
-  @media (max-width: 500px) {
-    width: 220px;
-    height: 220px;
-  }
-}
-
 .glowOrb {
   position: absolute;
-  inset: -40px;
+  inset: 10%;
   border-radius: 50%;
   background: radial-gradient(
     circle,
@@ -151,79 +139,24 @@ $hero-cream: #f2ebe1;
     rgba(255, 157, 77, 0.15) 45%,
     transparent 72%
   );
-  filter: blur(6px);
-  z-index: -1;
+  filter: blur(20px);
 }
 
-.cube {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 210px;
-  height: 210px;
-  transform-style: preserve-3d;
-  animation: spinCube 16s linear infinite;
+.heroImageWrap {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  transform: rotate(-8deg);
 
   @media (max-width: 500px) {
-    width: 150px;
-    height: 150px;
+    max-width: 320px;
   }
 }
 
-.face {
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(255, 216, 168, 0.75);
-  background: rgba(255, 157, 77, 0.06);
-}
-
-.front {
-  transform: translateZ(105px);
-}
-.back {
-  transform: translateZ(-105px) rotateY(180deg);
-}
-.right {
-  transform: rotateY(90deg) translateZ(105px);
-}
-.left {
-  transform: rotateY(-90deg) translateZ(105px);
-}
-.top {
-  transform: rotateX(90deg) translateZ(105px);
-}
-.bottom {
-  transform: rotateX(-90deg) translateZ(105px);
-}
-
-@media (max-width: 500px) {
-  .front {
-    transform: translateZ(75px);
-  }
-  .back {
-    transform: translateZ(-75px) rotateY(180deg);
-  }
-  .right {
-    transform: rotateY(90deg) translateZ(75px);
-  }
-  .left {
-    transform: rotateY(-90deg) translateZ(75px);
-  }
-  .top {
-    transform: rotateX(90deg) translateZ(75px);
-  }
-  .bottom {
-    transform: rotateX(-90deg) translateZ(75px);
-  }
-}
-
-@keyframes spinCube {
-  from {
-    transform: rotateX(-20deg) rotateY(0deg);
-  }
-  to {
-    transform: rotateX(-20deg) rotateY(360deg);
-  }
+.heroImage {
+  display: block;
+  width: 100%;
+  filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.4));
 }
 
 .trail {
