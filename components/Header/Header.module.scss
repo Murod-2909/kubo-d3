@@ -56,7 +56,7 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
   font-family: $font-body;
   font-weight: 700;
   font-size: 1.1rem;
@@ -65,14 +65,13 @@
 }
 
 .logoMark {
-  width: 22px;
-  height: 22px;
-  border-radius: 5px;
-  background: linear-gradient(135deg, $color-accent, #7a3418);
+  display: inline-flex;
+  color: $color-accent;
 }
 
 .logoAccent {
   color: $color-accent;
+  font-weight: 500;
 }
 
 .nav {
@@ -82,45 +81,222 @@
   font-size: 0.88rem;
   color: $color-text-muted;
 
-  a:hover {
+  > a:hover {
     color: $color-text;
   }
 
   @media (max-width: 900px) {
     display: none;
   }
+}
+
+.navItem {
+  position: relative;
+
+  &:hover .megaMenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+  }
+}
+
+.navTrigger {
+  font-family: $font-mono;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-text-muted;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0;
+  transition: color $dur-fast $ease-out;
+
+  &:hover {
+    color: $color-text;
+  }
+
+  &::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 4px solid currentColor;
+    opacity: 0.6;
+    margin-top: 1px;
+  }
+}
+
+.megaMenu {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: translate(-50%, 8px);
+  width: min(660px, 86vw);
+  display: flex;
+  gap: $space-3;
+  padding: $space-3;
+  background: $color-bg-alt;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity $dur-fast $ease-out, transform $dur-fast $ease-out,
+    visibility $dur-fast;
+  z-index: 60;
+}
+
+.megaCols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-2;
+  flex: 1;
+}
+
+.megaCard {
+  display: flex;
+  flex-direction: column;
+  padding: $space-2;
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+  background: $color-bg;
+  transition: border-color $dur-fast $ease-out, transform $dur-fast $ease-out;
+
+  &:hover {
+    border-color: $color-accent;
+    transform: translateY(-2px);
+
+    .megaCardVisualInner {
+      border-color: $color-accent;
+      transform: rotate(45deg) scale(1.1);
+    }
+  }
+}
+
+.megaCardVisual {
+  height: 64px;
+  border-radius: $radius-sm;
+  background: linear-gradient(155deg, $color-bg-raised, $color-bg-alt);
+  border: 1px solid $color-border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $space-2;
+}
+
+.megaCardVisualInner {
+  width: 22px;
+  height: 22px;
+  border: 1px solid $color-border-strong;
+  transform: rotate(45deg);
+  transition: transform $dur-med $ease-out, border-color $dur-med $ease-out;
+}
+
+.megaCardTitle {
+  font-size: 0.92rem;
+  color: $color-text;
+  margin-bottom: 0.3rem;
+}
+
+.megaCardCaption {
+  font-size: 0.74rem;
+  color: $color-text-faint;
+  margin-bottom: $space-2;
+  line-height: 1.4;
+}
+
+.megaCardLink {
+  margin-top: auto;
+  font-size: 0.76rem;
+  color: $color-accent;
+}
+
+.megaSide {
+  width: 168px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: $space-2 0 $space-2 $space-3;
+  border-left: 1px solid $color-border;
+
+  h4 {
+    font-family: $font-body;
+    font-size: 0.8rem;
+    color: $color-text;
+    margin-bottom: $space-2;
+  }
+
+  a {
+    font-size: 0.84rem;
+    color: $color-text-muted;
+    padding: 0.35rem 0;
+
+    &:hover {
+      color: $color-text;
+    }
+  }
+}
+
+.megaSideDivider {
+  height: 1px;
+  background: $color-border;
+  margin: $space-2 0;
+}
+
+.megaSideCta {
+  color: $color-accent !important;
+  font-size: 0.82rem !important;
 }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: $space-2;
+  gap: 0.6rem;
 
   @media (max-width: 900px) {
     display: none;
   }
 }
 
-.loginLink {
-  font-size: 0.88rem;
+.loginBtn {
+  font-family: $font-mono;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: $color-text-muted;
-  padding: 0.6rem 0.8rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid transparent;
+  border-radius: $radius-sm;
+  transition: border-color $dur-fast $ease-out, color $dur-fast $ease-out;
 
   &:hover {
     color: $color-text;
+    border-color: $color-border-strong;
   }
 }
 
 .ghostBtn {
   @include btn-ghost;
-  font-size: 0.85rem;
+  font-family: $font-mono;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   padding: 0.65rem 1.1rem;
 }
 
 .primaryBtn {
-  @include btn-primary;
+  @include btn-base;
+  background: $gradient-cta;
+  color: $color-text;
   font-size: 0.85rem;
-  padding: 0.65rem 1.1rem;
+  padding: 0.65rem 1.2rem;
+
+  &:hover {
+    background: $gradient-cta-hover;
+  }
 }
 
 .burger {
