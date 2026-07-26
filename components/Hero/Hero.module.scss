@@ -1,11 +1,10 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
-$hero-cream: #f2ebe1;
 
 .hero {
   position: relative;
-  background: $hero-cream;
+  background: $color-light-bg;
 }
 
 .heroTop {
@@ -19,7 +18,7 @@ $hero-cream: #f2ebe1;
     #c85f2c 42%,
     #d97a3e 68%,
     #eda874 84%,
-    $hero-cream 100%
+    $color-light-bg 100%
   );
 }
 

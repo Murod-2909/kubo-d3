@@ -74,6 +74,17 @@
   justify-content: center;
   margin-bottom: $space-3;
   overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $dur-med $ease-out;
+  }
+}
+
+.card:hover .cardVisual img {
+  transform: scale(1.06);
 }
 
 .cardVisualInner {

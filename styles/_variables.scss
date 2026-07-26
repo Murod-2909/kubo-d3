@@ -18,6 +18,17 @@ $color-accent-soft: rgba(232, 103, 47, 0.12);
 $gradient-cta: linear-gradient(135deg, #ff9d4d 0%, #e8672f 55%, #d43b3b 100%);
 $gradient-cta-hover: linear-gradient(135deg, #ffb46e 0%, #ff7d40 55%, #e14848 100%);
 
+// Light section palette — used by sections that break from the dark
+// base to create scroll rhythm (Process, Gallery), echoing the warm
+// cream the Hero gradient settles into.
+$color-light-bg: #f2ebe1;
+$color-light-card: #fbf8f2;
+$color-light-text: #1a1512;
+$color-light-text-muted: #6b5f52;
+$color-light-text-faint: #a89a89;
+$color-light-border: rgba(20, 13, 9, 0.1);
+$color-light-border-strong: rgba(20, 13, 9, 0.18);
+
 // Type
 $font-display: "Fraunces", "Georgia", serif;
 $font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;

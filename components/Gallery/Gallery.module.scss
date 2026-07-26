@@ -3,7 +3,7 @@
 
 .gallery {
   padding: $space-7 0;
-  background: $color-bg;
+  background: $color-light-bg;
 }
 
 .inner {
@@ -17,17 +17,22 @@
 
 .eyebrow {
   @include eyebrow;
+  color: $color-light-text-muted;
   margin-bottom: $space-3;
+
+  &::before {
+    background: $color-accent;
+  }
 }
 
 .title {
   font-size: $fs-h2;
-  color: $color-text;
+  color: $color-light-text;
   margin-bottom: $space-3;
 }
 
 .subtitle {
-  color: $color-text-muted;
+  color: $color-light-text-muted;
   font-size: $fs-lead;
   max-width: 50ch;
 }
@@ -73,16 +78,25 @@
   position: relative;
   width: 100%;
   height: 100%;
-  border: 1px solid $color-border;
-  background: linear-gradient(155deg, $color-bg-raised 0%, $color-bg-alt 65%);
-  background-image: linear-gradient(155deg, $color-bg-raised 0%, $color-bg-alt 65%),
-    linear-gradient(to right, $color-border 1px, transparent 1px),
-    linear-gradient(to bottom, $color-border 1px, transparent 1px);
-  background-size: cover, 28px 28px, 28px 28px;
+  border: 1px solid $color-light-border;
+  background: $color-light-card;
   transition: border-color $dur-fast $ease-out;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $dur-med $ease-out;
+  }
 
   &:hover {
     border-color: $color-accent;
+
+    img {
+      transform: scale(1.05);
+    }
 
     .tileOverlay {
       opacity: 1;

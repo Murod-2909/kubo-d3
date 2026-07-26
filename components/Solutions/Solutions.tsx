@@ -5,16 +5,19 @@ const SOLUTIONS = [
     title: "Poyabzal",
     description:
       "Har bir tikuv, taglik va materialni harakatlanuvchi 3D ko'rinishda ko'rsating.",
+    image: "/images/solution-footwear.jpg",
   },
   {
     title: "Mebel",
     description:
       "Xaridorlar mebelni AR orqali o'z xonasida joylashtirib ko'rishi mumkin.",
+    image: "/images/solution-furniture.jpg",
   },
   {
     title: "Kiyim-kechak",
     description:
       "Mato, tekstura va o'lchamlarni 360° aylanadigan modelda namoyish eting.",
+    image: "/images/solution-apparel.jpg",
   },
   {
     title: "Zargarlik buyumlari",
@@ -53,7 +56,11 @@ export default function Solutions() {
           {SOLUTIONS.map((item) => (
             <article className={styles.card} key={item.title}>
               <div className={styles.cardVisual} aria-hidden="true">
-                <div className={styles.cardVisualInner} />
+                {item.image ? (
+                  <img src={item.image} alt="" />
+                ) : (
+                  <div className={styles.cardVisualInner} />
+                )}
               </div>
               <h3 className={styles.cardTitle}>{item.title}</h3>
               <p className={styles.cardDescription}>{item.description}</p>
