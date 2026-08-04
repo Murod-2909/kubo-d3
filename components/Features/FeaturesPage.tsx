@@ -21,8 +21,12 @@ const TABS = [
       "Har qanday qurilmada ishlaydi",
     ],
     stats: [
-      { value: "$50/oy", label: "3D hamma uchun ochiq" },
-      { value: "$10-20", label: "O'rtacha SKU narxi" },
+      { value: "$50/oy", label: "3D hamma uchun ochiq", sub: "" },
+      {
+        value: "$10-20",
+        label: "O'rtacha SKU narxi",
+        sub: "Kubo3D taxmini · tekshiring",
+      },
     ],
     tag: "LIVE 3D",
     image: "/images/solution-footwear.jpg",
@@ -41,8 +45,12 @@ const TABS = [
       "Bir bosishda faollashadi",
     ],
     stats: [
-      { value: "42%", label: "Qaytarishlar — mahsulot kutilganidek chiqmagani sababli" },
-      { value: "0", label: "Ilova yuklab olish" },
+      {
+        value: "42%",
+        label: "Qaytarishlar — mahsulot kutilganidek chiqmagani sababli",
+        sub: "Manba: ICSC so'rovi, 2024",
+      },
+      { value: "0", label: "Ilova yuklab olish", sub: "Brauzerda ishlaydi" },
     ],
     tag: "LIVE AR",
     image: "/images/benefits-sofa.jpg",
@@ -61,8 +69,16 @@ const TABS = [
       "Model turi va kayfiyatini boshqarish",
     ],
     stats: [
-      { value: "1 = ∞", label: "Bitta surat, cheksiz tasvir" },
-      { value: "Soatlar", label: "Haftalar emas" },
+      {
+        value: "1 = ∞",
+        label: "Bitta surat, cheksiz tasvir",
+        sub: "Bitta raqamli egizakdan",
+      },
+      {
+        value: "Soatlar",
+        label: "Haftalar emas",
+        sub: "Kampaniyaga tayyor suratlar",
+      },
     ],
     tag: "AI",
     image: "/images/feature-handbag.jpg",
@@ -81,8 +97,12 @@ const TABS = [
       "Istalgan vaqtda tahrirlash",
     ],
     stats: [
-      { value: "+12%", label: "Sahifada o'tkazilgan vaqt" },
-      { value: "1 yo'l", label: "Ko'rishdan xariddgacha" },
+      { value: "+12%", label: "Sahifada o'tkazilgan vaqt", sub: "Kubo3D taxmini" },
+      {
+        value: "1 yo'l",
+        label: "Ko'rishdan xariddgacha",
+        sub: "Xaridor ishonchini tezda shakllantiradi",
+      },
     ],
     tag: "HOTSPOTS",
     image: "/images/solution-furniture.jpg",
@@ -168,6 +188,7 @@ export default function FeaturesPage() {
                   <div className={styles.stat} key={s.label}>
                     <strong>{s.value}</strong>
                     <span>{s.label}</span>
+                    {s.sub && <em>{s.sub}</em>}
                   </div>
                 ))}
               </div>
@@ -180,6 +201,9 @@ export default function FeaturesPage() {
             <div className={styles.tabVisual}>
               <span className={styles.tabTag}>{tab.tag}</span>
               <img src={tab.image} alt="" />
+              <span className={styles.tabHotspot} aria-hidden="true">
+                +
+              </span>
             </div>
           </div>
         </section>
