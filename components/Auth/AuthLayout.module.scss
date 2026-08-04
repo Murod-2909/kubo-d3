@@ -1,0 +1,260 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ─── left: light visual panel ────────────────────────────────────────
+.visualPanel {
+  position: relative;
+  background: $color-light-bg;
+  padding: $space-4 clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @media (max-width: 900px) {
+    min-height: 340px;
+  }
+}
+
+.backLink {
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  color: $color-light-text-muted;
+  margin-bottom: $space-6;
+
+  &:hover {
+    color: $color-light-text;
+  }
+
+  @media (max-width: 900px) {
+    margin-bottom: $space-4;
+  }
+}
+
+.headline {
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  color: $color-light-text;
+  line-height: 1.2;
+  max-width: 20ch;
+}
+
+.visual {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+}
+
+.glowOrb {
+  position: absolute;
+  inset: 12% 20%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(232, 103, 47, 0.28) 0%,
+    rgba(232, 103, 47, 0.1) 45%,
+    transparent 72%
+  );
+  filter: blur(30px);
+}
+
+.float {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  animation: authFloat 6s ease-in-out infinite;
+}
+
+@keyframes authFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+
+.imageWrap {
+  --mx: 0;
+  --my: 0;
+  width: 100%;
+  max-width: 460px;
+  transform: rotate(calc(-6deg + var(--mx) * -10deg))
+    translate(calc(var(--mx) * 18px), calc(var(--my) * 14px));
+  transition: transform 250ms $ease-out;
+
+  img {
+    display: block;
+    width: 100%;
+    filter: drop-shadow(0 20px 24px rgba(20, 13, 9, 0.25));
+  }
+}
+
+// ─── right: dark form panel ───────────────────────────────────────────
+.formPanel {
+  background: $color-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-5 clamp(1.5rem, 5vw, 4rem);
+}
+
+.formInner {
+  width: 100%;
+  max-width: 380px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: $font-body;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: $color-text;
+  margin-bottom: $space-6;
+}
+
+.logoMark {
+  display: inline-flex;
+  color: $color-accent;
+}
+
+.logoAccent {
+  color: $color-accent;
+  font-weight: 500;
+}
+
+.title {
+  font-size: $fs-h3;
+  color: $color-text;
+  margin-bottom: $space-2;
+}
+
+.subtitle {
+  color: $color-text-muted;
+  font-size: 0.95rem;
+  margin-bottom: $space-4;
+}
+
+// ─── form fields (used by Login/Register pages) ────────────────────
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: $space-3;
+}
+
+.label {
+  font-size: 0.82rem;
+  color: $color-text-muted;
+}
+
+.input {
+  font-family: $font-body;
+  font-size: 0.95rem;
+  color: $color-text;
+  background: $color-bg-alt;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-sm;
+  padding: 0.8rem 1rem;
+  transition: border-color $dur-fast $ease-out;
+
+  &::placeholder {
+    color: $color-text-faint;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent;
+  }
+}
+
+.submitBtn {
+  @include btn-base;
+  width: 100%;
+  justify-content: center;
+  background: $gradient-cta;
+  color: $color-text;
+  padding: 0.85rem 1rem;
+  font-size: 0.92rem;
+  margin-top: $space-2;
+
+  &:hover {
+    background: $gradient-cta-hover;
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  margin: $space-4 0;
+  color: $color-text-faint;
+  font-size: 0.78rem;
+  font-family: $font-mono;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: $color-border;
+  }
+}
+
+.socialBtn {
+  @include btn-ghost;
+  width: 100%;
+  justify-content: center;
+  font-size: 0.9rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: $space-2;
+}
+
+.footer {
+  font-size: 0.88rem;
+  color: $color-text-muted;
+  text-align: center;
+  margin-top: $space-4;
+
+  a {
+    color: $color-accent;
+
+    &:hover {
+      color: $color-accent-hover;
+    }
+  }
+}
+
+.terms {
+  font-size: 0.78rem;
+  color: $color-text-faint;
+  text-align: center;
+  margin-top: $space-5;
+  line-height: 1.6;
+
+  a {
+    color: $color-text-muted;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: $color-text;
+    }
+  }
+}

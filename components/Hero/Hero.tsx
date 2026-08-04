@@ -55,7 +55,7 @@ export default function Hero() {
               mijozga aylantiring.
             </p>
 
-            <a href="#trial" className={styles.primaryBtn}>
+            <a href="/register" className={styles.primaryBtn}>
               Yaratishni boshlash &rarr;
             </a>
           </div>
@@ -104,7 +104,7 @@ export default function Hero() {
               daqiqalik video suratga olib, 3D dunyosiga sayohatni boshlash
               imkonini beradi.
             </p>
-            <a href="#trial" className={styles.powerCta}>
+            <a href="/register" className={styles.powerCta}>
               Bepul sinash &rarr;
             </a>
           </div>

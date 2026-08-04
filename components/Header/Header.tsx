@@ -171,13 +171,13 @@ export default function Header() {
           </nav>
 
           <div className={styles.actions}>
-            <a href="#login" className={styles.loginBtn}>
+            <a href="/login" className={styles.loginBtn}>
               Kirish
             </a>
             <a href="#demo" className={styles.ghostBtn}>
               Demo so&rsquo;rash
             </a>
-            <a href="#trial" className={styles.primaryBtn}>
+            <a href="/register" className={styles.primaryBtn}>
               Bepul sinash &rarr;
             </a>
           </div>
@@ -210,7 +210,7 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
-            <a href="#trial" className={styles.primaryBtn}>
+            <a href="/register" className={styles.primaryBtn}>
               Bepul sinash &rarr;
             </a>
           </div>

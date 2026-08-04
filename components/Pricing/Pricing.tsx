@@ -91,7 +91,7 @@ export default function Pricing() {
                 )}
               </div>
 
-              <a href="#trial" className={styles.planCta}>
+              <a href="/register" className={styles.planCta}>
                 {plan.cta} &rarr;
               </a>
 

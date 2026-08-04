@@ -18,7 +18,7 @@ export default function CTA() {
         </p>
 
         <div className={styles.actions}>
-          <a href="#trial" className={styles.primaryBtn}>
+          <a href="/register" className={styles.primaryBtn}>
             Bepul sinash &rarr;
           </a>
           <a href="#demo" className={styles.ghostBtn}>
