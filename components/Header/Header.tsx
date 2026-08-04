@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Header.module.scss";
 
 const PRODUCT_MENU = [
   {
     title: "Xususiyatlar",
     caption: "Interaktiv 3D · AR · AI",
-    href: "#product",
+    href: "/features",
     image: "/images/feature-handbag.jpg",
   },
   {
@@ -70,9 +70,38 @@ function LogoMark() {
   );
 }
 
+type DropdownKey = "product" | "solution";
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [barVisible, setBarVisible] = useState(true);
+  const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null);
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!openDropdown) return;
+
+    function handlePointerDown(e: MouseEvent) {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null);
+      }
+    }
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpenDropdown(null);
+    }
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [openDropdown]);
+
+  function toggleDropdown(key: DropdownKey) {
+    setOpenDropdown((prev) => (prev === key ? null : key));
+  }
 
   return (
     <>
@@ -104,15 +133,29 @@ export default function Header() {
             kubo<span className={styles.logoAccent}>.3d</span>
           </a>
 
-          <nav className={styles.nav} aria-label="Asosiy navigatsiya">
+          <nav className={styles.nav} aria-label="Asosiy navigatsiya" ref={navRef}>
             <div className={styles.navItem}>
-              <button className={styles.navTrigger} type="button">
+              <button
+                className={styles.navTrigger}
+                type="button"
+                aria-expanded={openDropdown === "product"}
+                onClick={() => toggleDropdown("product")}
+              >
                 Mahsulot
               </button>
-              <div className={styles.megaMenu}>
+              <div
+                className={`${styles.megaMenu} ${
+                  openDropdown === "product" ? styles.megaMenuOpen : ""
+                }`}
+              >
                 <div className={styles.megaCols}>
                   {PRODUCT_MENU.map((item) => (
-                    <a href={item.href} className={styles.megaCard} key={item.title}>
+                    <a
+                      href={item.href}
+                      className={styles.megaCard}
+                      key={item.title}
+                      onClick={() => setOpenDropdown(null)}
+                    >
                       <span className={styles.megaCardVisual}>
                         <img src={item.image} alt="" />
                       </span>
@@ -124,10 +167,18 @@ export default function Header() {
                 </div>
                 <div className={styles.megaSide}>
                   <h4>Kompaniya</h4>
-                  <a href="#top">Biz haqimizda</a>
-                  <a href="#top">Yangiliklar</a>
+                  <a href="#top" onClick={() => setOpenDropdown(null)}>
+                    Biz haqimizda
+                  </a>
+                  <a href="#top" onClick={() => setOpenDropdown(null)}>
+                    Yangiliklar
+                  </a>
                   <span className={styles.megaSideDivider} />
-                  <a href="#demo" className={styles.megaSideCta}>
+                  <a
+                    href="#demo"
+                    className={styles.megaSideCta}
+                    onClick={() => setOpenDropdown(null)}
+                  >
                     Demo band qilish &rarr;
                   </a>
                 </div>
@@ -135,13 +186,27 @@ export default function Header() {
             </div>
 
             <div className={styles.navItem}>
-              <button className={styles.navTrigger} type="button">
+              <button
+                className={styles.navTrigger}
+                type="button"
+                aria-expanded={openDropdown === "solution"}
+                onClick={() => toggleDropdown("solution")}
+              >
                 Yechimlar
               </button>
-              <div className={styles.megaMenu}>
+              <div
+                className={`${styles.megaMenu} ${
+                  openDropdown === "solution" ? styles.megaMenuOpen : ""
+                }`}
+              >
                 <div className={styles.megaCols}>
                   {SOLUTION_MENU.map((item) => (
-                    <a href={item.href} className={styles.megaCard} key={item.title}>
+                    <a
+                      href={item.href}
+                      className={styles.megaCard}
+                      key={item.title}
+                      onClick={() => setOpenDropdown(null)}
+                    >
                       <span className={styles.megaCardVisual}>
                         <img src={item.image} alt="" />
                       </span>
@@ -153,10 +218,18 @@ export default function Header() {
                 </div>
                 <div className={styles.megaSide}>
                   <h4>Biznes hajmi</h4>
-                  <a href="#top">Kichik biznes</a>
-                  <a href="#top">Korporativ</a>
+                  <a href="#top" onClick={() => setOpenDropdown(null)}>
+                    Kichik biznes
+                  </a>
+                  <a href="#top" onClick={() => setOpenDropdown(null)}>
+                    Korporativ
+                  </a>
                   <span className={styles.megaSideDivider} />
-                  <a href="#gallery" className={styles.megaSideCta}>
+                  <a
+                    href="#gallery"
+                    className={styles.megaSideCta}
+                    onClick={() => setOpenDropdown(null)}
+                  >
                     Galereyani ko&rsquo;rish &rarr;
                   </a>
                 </div>

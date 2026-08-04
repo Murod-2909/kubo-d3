@@ -1,0 +1,360 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.eyebrow {
+  @include eyebrow;
+  color: $color-light-text-muted;
+  margin-bottom: $space-3;
+
+  &::before {
+    background: $color-accent;
+  }
+}
+
+// ─── hero + tab bar ───────────────────────────────────────────────────
+.hero {
+  background: $color-light-bg;
+  padding-top: clamp($space-6, 9vw, 7rem);
+}
+
+.heroInner {
+  @include container;
+  max-width: 760px;
+  padding-bottom: $space-6;
+}
+
+.title {
+  font-size: $fs-h1;
+  color: $color-light-text;
+  margin-bottom: $space-3;
+}
+
+.subtitle {
+  font-size: $fs-lead;
+  color: $color-light-text-muted;
+  max-width: 60ch;
+}
+
+.tabBar {
+  @include container;
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid $color-light-border;
+}
+
+.tabBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: $space-3 $space-3;
+  font-size: 0.9rem;
+  color: $color-light-text-muted;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color $dur-fast $ease-out, border-color $dur-fast $ease-out;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-light-text;
+  }
+
+  @media (max-width: 700px) {
+    padding: $space-2 $space-2;
+    font-size: 0.82rem;
+  }
+}
+
+.tabBtnActive {
+  color: $color-light-text;
+  border-color: $color-accent;
+}
+
+.tabIndex {
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  color: $color-accent;
+}
+
+// ─── tab content ────────────────────────────────────────────────────
+.tabContent {
+  background: $color-light-card;
+  border-bottom: 1px solid $color-light-border;
+}
+
+.tabInner {
+  @include container;
+  padding: $space-6 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-6;
+  align-items: center;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: $space-4;
+  }
+}
+
+.tabEyebrow {
+  @include eyebrow;
+  color: $color-accent;
+  margin-bottom: $space-3;
+
+  &::before {
+    background: $color-accent;
+  }
+}
+
+.tabHeading {
+  font-size: $fs-h2;
+  color: $color-light-text;
+  margin-bottom: $space-3;
+}
+
+.tabDescription {
+  color: $color-light-text-muted;
+  font-size: $fs-lead;
+  margin-bottom: $space-4;
+}
+
+.featureList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem $space-3;
+  margin-bottom: $space-4;
+
+  li {
+    font-size: 0.88rem;
+    color: $color-light-text-muted;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: $color-accent;
+      flex-shrink: 0;
+    }
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statRow {
+  display: flex;
+  gap: $space-4;
+  padding-top: $space-3;
+  border-top: 1px solid $color-light-border;
+  margin-bottom: $space-4;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  max-width: 220px;
+
+  strong {
+    font-family: $font-display;
+    font-size: 1.4rem;
+    color: $color-light-text;
+  }
+
+  span {
+    font-size: 0.78rem;
+    color: $color-light-text-faint;
+  }
+}
+
+.tabCta {
+  @include btn-base;
+  background: $gradient-cta;
+  color: $color-text;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.9rem;
+
+  &:hover {
+    background: $gradient-cta-hover;
+  }
+}
+
+.tabVisual {
+  position: relative;
+  border-radius: $radius-md;
+  overflow: hidden;
+  border: 1px solid $color-light-border;
+  aspect-ratio: 4 / 3;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.tabTag {
+  position: absolute;
+  top: $space-2;
+  left: $space-2;
+  z-index: 1;
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: $color-text;
+  background: $color-accent;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+}
+
+// ─── comparison table ───────────────────────────────────────────────
+.compare {
+  background: $color-bg;
+  padding: $space-7 0;
+}
+
+.compareInner {
+  @include container;
+
+  .eyebrow {
+    color: $color-text-muted;
+  }
+}
+
+.compareTitle {
+  font-size: $fs-h2;
+  color: $color-text;
+  margin-bottom: $space-5;
+}
+
+.compareTableWrap {
+  overflow-x: auto;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+.compareTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+
+  th,
+  td {
+    text-align: left;
+    padding: $space-3;
+    font-size: 0.86rem;
+    white-space: nowrap;
+  }
+
+  thead th {
+    color: $color-text;
+    font-weight: 600;
+    border-bottom: 1px solid $color-border;
+    font-size: 0.8rem;
+  }
+
+  tbody th {
+    color: $color-text-muted;
+    font-weight: 400;
+    font-family: $font-mono;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  tbody td {
+    color: $color-text-muted;
+  }
+
+  tbody tr:not(:last-child) th,
+  tbody tr:not(:last-child) td {
+    border-bottom: 1px solid $color-border;
+  }
+}
+
+// ─── integrations ───────────────────────────────────────────────────
+.integrations {
+  background: $color-light-bg;
+  padding: $space-7 0;
+}
+
+.integrationsInner {
+  @include container;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $space-4;
+  flex-wrap: wrap;
+}
+
+.integrationsTitle {
+  font-size: $fs-h2;
+  color: $color-light-text;
+}
+
+.integrationsList {
+  display: flex;
+  gap: $space-4;
+  flex-wrap: wrap;
+
+  span {
+    font-family: $font-display;
+    font-size: 1.1rem;
+    color: $color-light-text-muted;
+  }
+}
+
+// ─── CTA ────────────────────────────────────────────────────────────
+.cta {
+  position: relative;
+  overflow: hidden;
+  background: $color-bg;
+  padding: $space-7 0;
+  text-align: center;
+}
+
+.ctaInner {
+  @include container;
+  max-width: 720px;
+
+  h2 {
+    font-size: $fs-h2;
+    color: $color-text;
+    margin-bottom: $space-3;
+  }
+
+  p {
+    color: $color-text-muted;
+    font-size: $fs-lead;
+    margin-bottom: $space-5;
+  }
+}
+
+.ctaActions {
+  display: flex;
+  gap: $space-2;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary {
+  @include btn-base;
+  background: $gradient-cta;
+  color: $color-text;
+  padding: 0.95rem 1.7rem;
+  font-size: 0.95rem;
+
+  &:hover {
+    background: $gradient-cta-hover;
+  }
+}
+
+.ctaGhost {
+  @include btn-ghost;
+  padding: 0.95rem 1.7rem;
+  font-size: 0.95rem;
+}

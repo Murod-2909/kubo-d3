@@ -147,6 +147,12 @@
   transition: opacity $dur-fast $ease-out, transform $dur-fast $ease-out,
     visibility $dur-fast;
   z-index: 60;
+
+  &.megaMenuOpen {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+  }
 }
 
 .megaCols {
