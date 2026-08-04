@@ -8,6 +8,16 @@
   padding-inline: clamp(1.25rem, 4vw, 2.5rem);
 }
 
+// For full-bleed sections (edge-to-edge background/image) that still
+// need their text content to line up with the standard container's
+// left edge — e.g. a two-column split where the image fills its
+// column to the viewport edge but the text shouldn't.
+@mixin container-inset-left {
+  padding-left: calc(
+    max(0px, (100vw - #{$container-max}) / 2) + clamp(1.25rem, 4vw, 2.5rem)
+  );
+}
+
 @mixin eyebrow {
   font-family: $font-mono;
   font-size: $fs-eyebrow;
