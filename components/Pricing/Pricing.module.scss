@@ -1,0 +1,196 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.pricing {
+  padding: $space-7 0;
+  background: $color-light-bg;
+}
+
+.inner {
+  @include container;
+}
+
+.header {
+  max-width: 640px;
+  margin-bottom: $space-6;
+}
+
+.eyebrow {
+  @include eyebrow;
+  color: $color-light-text-muted;
+  margin-bottom: $space-3;
+
+  &::before {
+    background: $color-accent;
+  }
+}
+
+.title {
+  font-size: $fs-h2;
+  color: $color-light-text;
+  margin-bottom: $space-3;
+}
+
+.subtitle {
+  color: $color-light-text-muted;
+  font-size: $fs-lead;
+  max-width: 50ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $space-3;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  position: relative;
+  background: $color-light-card;
+  border: 1px solid $color-light-border;
+  border-radius: $radius-md;
+  padding: $space-4 $space-3 $space-3;
+  display: flex;
+  flex-direction: column;
+  transition: border-color $dur-fast $ease-out, transform $dur-fast $ease-out;
+
+  &:hover {
+    border-color: $color-light-border-strong;
+    transform: translateY(-4px);
+  }
+}
+
+.cardHighlighted {
+  background: $color-bg;
+  border-color: $color-bg;
+
+  .planName,
+  .price,
+  .planDescription {
+    color: $color-text;
+  }
+
+  .period {
+    color: $color-text-muted;
+  }
+
+  .featureList li {
+    color: $color-text-muted;
+
+    &::before {
+      background: $color-accent-hover;
+    }
+  }
+
+  &:hover {
+    border-color: $color-accent;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: -0.7rem;
+  left: $space-3;
+  background: $gradient-cta;
+  color: $color-text;
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+}
+
+.planName {
+  font-size: 1.1rem;
+  color: $color-light-text;
+  margin-bottom: 0.4rem;
+}
+
+.planDescription {
+  font-size: 0.85rem;
+  color: $color-light-text-muted;
+  margin-bottom: $space-3;
+  min-height: 2.6em;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin-bottom: $space-3;
+}
+
+.price {
+  font-family: $font-display;
+  font-size: 2rem;
+  color: $color-light-text;
+}
+
+.period {
+  font-size: 0.85rem;
+  color: $color-light-text-muted;
+}
+
+.planCta {
+  @include btn-ghost;
+  justify-content: center;
+  width: 100%;
+  font-size: 0.85rem;
+  padding: 0.7rem 1rem;
+  margin-bottom: $space-4;
+  border-color: $color-light-border-strong;
+  color: $color-light-text;
+
+  &:hover {
+    border-color: $color-accent;
+    color: $color-light-text;
+  }
+}
+
+.cardHighlighted .planCta {
+  background: $gradient-cta;
+  color: $color-text;
+  border-color: transparent;
+
+  &:hover {
+    background: $gradient-cta-hover;
+    color: $color-text;
+  }
+}
+
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-top: $space-3;
+  border-top: 1px solid $color-light-border;
+
+  li {
+    font-size: 0.84rem;
+    color: $color-light-text-muted;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    &::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: $color-accent;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.cardHighlighted .featureList {
+  border-top-color: $color-border;
+}
