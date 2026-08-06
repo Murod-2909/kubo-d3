@@ -175,10 +175,35 @@
   }
 }
 
-.heroImage {
+.heroVideoFrame {
+  position: relative;
+  border-radius: $radius-md;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+}
+
+.heroVideo {
   display: block;
   width: 100%;
-  filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.4));
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.heroVideoTag {
+  position: absolute;
+  top: $space-3;
+  left: $space-3;
+  z-index: 1;
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: $color-text;
+  background: $color-accent;
+  border-radius: $radius-sm;
+  padding: 0.3rem 0.7rem;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .trail {

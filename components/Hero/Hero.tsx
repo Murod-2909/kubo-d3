@@ -70,7 +70,18 @@ export default function Hero() {
             <div className={styles.glowOrb} />
             <div className={styles.heroFloat}>
               <div className={styles.heroImageWrap} ref={wrapRef}>
-                <img src="/images/hero-shoe.png" alt="" className={styles.heroImage} />
+                <div className={styles.heroVideoFrame}>
+                  <span className={styles.heroVideoTag}>360&deg; &middot; AI</span>
+                  <video
+                    className={styles.heroVideo}
+                    src="/videos/hero-shoe-rotate.mp4"
+                    poster="/videos/hero-shoe-rotate-poster.jpg"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                </div>
               </div>
             </div>
 

@@ -9,6 +9,8 @@ const STEPS = [
       "Har qanday mobil telefon yoki DSLR kamerada ~3 daqiqalik video suratga oling va yuklang. Shu qadar oddiy.",
     facts: ["3 daq. video kiritish", "Har qanday qurilma", "0 mutaxassis"],
     image: "/images/how-it-works-chair.jpg",
+    video: "/videos/process-capture.mp4",
+    poster: "/videos/process-capture-poster.jpg",
   },
   {
     index: "02",
@@ -45,7 +47,18 @@ export default function Process() {
           {STEPS.map((step) => (
             <article className={styles.step} key={step.index}>
               <div className={styles.stepVisual}>
-                <img src={step.image} alt="" />
+                {step.video ? (
+                  <video
+                    src={step.video}
+                    poster={step.poster}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                ) : (
+                  <img src={step.image} alt="" />
+                )}
               </div>
               <div className={styles.stepIndex}>{step.index}</div>
               <span className={styles.stepEyebrow}>{step.title}</span>

@@ -54,7 +54,8 @@
     border-color: $color-light-border-strong;
     transform: translateY(-4px);
 
-    .stepVisual img {
+    .stepVisual img,
+    .stepVisual video {
       transform: scale(1.05);
     }
   }
@@ -80,7 +81,8 @@
   margin-bottom: $space-3;
   background: $color-light-bg;
 
-  img {
+  img,
+  video {
     width: 100%;
     height: 100%;
     object-fit: cover;
