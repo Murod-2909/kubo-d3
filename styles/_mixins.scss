@@ -1,10 +1,9 @@
 @use "sass:color";
 @use "variables" as *;
 
+// Edge-to-edge like the Header: no max-width cap, just side padding.
 @mixin container {
   width: 100%;
-  max-width: $container-max;
-  margin-inline: auto;
   padding-inline: clamp(1.25rem, 4vw, 2.5rem);
 }
 
@@ -13,9 +12,7 @@
 // left edge — e.g. a two-column split where the image fills its
 // column to the viewport edge but the text shouldn't.
 @mixin container-inset-left {
-  padding-left: calc(
-    max(0px, (100vw - #{$container-max}) / 2) + clamp(1.25rem, 4vw, 2.5rem)
-  );
+  padding-left: clamp(1.25rem, 4vw, 2.5rem);
 }
 
 @mixin eyebrow {

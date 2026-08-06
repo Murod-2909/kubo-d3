@@ -393,6 +393,7 @@
 .ctaInner {
   @include container;
   max-width: 720px;
+  margin-inline: auto;
 
   h2 {
     font-size: $fs-h2;
