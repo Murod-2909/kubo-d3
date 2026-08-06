@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./Hero.module.scss";
 
 const LOGOS = [
@@ -30,6 +30,33 @@ export default function Hero() {
     wrapRef.current?.style.setProperty("--mx", "0");
     wrapRef.current?.style.setProperty("--my", "0");
   }
+
+  useEffect(() => {
+    const visual = visualRef.current;
+    if (!visual) return;
+
+    let ticking = false;
+
+    function update() {
+      ticking = false;
+      const rect = visual!.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      // 0 when the visual is centered in the viewport, growing toward 1 as
+      // it scrolls up and out of view.
+      const progress = Math.min(Math.max((vh * 0.5 - rect.top) / vh, 0), 1);
+      visual!.style.setProperty("--scrollP", progress.toFixed(3));
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <section className={styles.hero} id="top">
@@ -70,18 +97,18 @@ export default function Hero() {
             <div className={styles.glowOrb} />
             <div className={styles.heroFloat}>
               <div className={styles.heroImageWrap} ref={wrapRef}>
-                <div className={styles.heroVideoFrame}>
-                  <span className={styles.heroVideoTag}>360&deg; &middot; AI</span>
-                  <video
-                    className={styles.heroVideo}
-                    src="/videos/hero-shoe-rotate.mp4"
-                    poster="/videos/hero-shoe-rotate-poster.jpg"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                </div>
+                <span className={styles.heroVideoTag}>360&deg; &middot; AI</span>
+                <video
+                  className={styles.heroVideo}
+                  poster="/videos/hero-shoe-rotate-poster.png"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
+                  <source src="/videos/hero-shoe-rotate.webm" type="video/webm" />
+                  <source src="/videos/hero-shoe-rotate.mp4" type="video/mp4" />
+                </video>
               </div>
             </div>
 

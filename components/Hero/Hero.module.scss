@@ -117,12 +117,17 @@
 
 // ─── 3D visual ──────────────────────────────────────────────────────
 .visual {
+  --scrollP: 0;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 480px;
   cursor: default;
+  transform: translateY(calc(var(--scrollP) * 44px))
+    scale(calc(1 - var(--scrollP) * 0.08));
+  opacity: calc(1 - var(--scrollP) * 0.55);
+  will-change: transform, opacity;
 
   @media (max-width: 960px) {
     min-height: 340px;
@@ -175,25 +180,16 @@
   }
 }
 
-.heroVideoFrame {
-  position: relative;
-  border-radius: $radius-md;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
-}
-
 .heroVideo {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.4));
 }
 
 .heroVideoTag {
   position: absolute;
-  top: $space-3;
-  left: $space-3;
+  top: 8%;
+  left: 2%;
   z-index: 1;
   font-family: $font-mono;
   font-size: 0.68rem;
@@ -204,6 +200,7 @@
   padding: 0.3rem 0.7rem;
   text-transform: uppercase;
   font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .trail {
