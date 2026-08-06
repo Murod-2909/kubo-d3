@@ -1,0 +1,53 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.statRing {
+  @include card;
+  padding: $space-3;
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+}
+
+.ringVisual {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+}
+
+.ringSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.ringNumber {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-display;
+  font-size: 1.05rem;
+  color: $color-text;
+}
+
+.ringText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.ringLabel {
+  color: $color-text;
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.ringSource {
+  font-style: normal;
+  color: $color-text-faint;
+  font-size: 0.74rem;
+}

@@ -1,9 +1,13 @@
-import styles from "./Testimonials.module.scss";
+"use client";
 
-const STATS = [
-  { value: "+24%", label: "3D bilan konversiya o'sishi", source: "Forrester, 2024" },
-  { value: "76%", label: "Iste'molchilar 3D'ni kutmoqda", source: "Adobe, 2023" },
-  { value: "2 soat", label: "Video'dan jonli 3D modelgacha", source: "Kubo3D · UG3D®" },
+import { useEffect, useRef } from "react";
+import * as d3 from "d3";
+import styles from "./Testimonials.module.scss";
+import StatRing from "./StatRing";
+
+const RING_STATS = [
+  { percent: 24, display: "+24%", label: "3D bilan konversiya o'sishi", source: "Forrester, 2024" },
+  { percent: 76, display: "76%", label: "Iste'molchilar 3D'ni kutmoqda", source: "Adobe, 2023" },
 ];
 
 const QUOTES = [
@@ -21,18 +25,65 @@ const QUOTES = [
   },
 ];
 
+function TimeStatCard() {
+  const numberRef = useRef<HTMLSpanElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const played = useRef(false);
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    const numberEl = numberRef.current;
+    if (!wrap || !numberEl) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !played.current) {
+            played.current = true;
+            d3.select(numberEl)
+              .transition()
+              .duration(1200)
+              .ease(d3.easeCubicOut)
+              .tween("text", () => {
+                const interpolate = d3.interpolate(0, 2);
+                return (t: number) => {
+                  numberEl.textContent = interpolate(t).toFixed(1) + " soat";
+                };
+              });
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(wrap);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className={styles.statCard} ref={wrapRef}>
+      <strong ref={numberRef}>0.0 soat</strong>
+      <span>Video&rsquo;dan jonli 3D modelgacha</span>
+      <em>Kubo3D · UG3D&reg;</em>
+    </div>
+  );
+}
+
 export default function Testimonials() {
   return (
     <section className={styles.testimonials}>
       <div className={styles.inner}>
         <div className={styles.statsRow}>
-          {STATS.map((s) => (
-            <div className={styles.statCard} key={s.label}>
-              <strong>{s.value}</strong>
-              <span>{s.label}</span>
-              <em>{s.source}</em>
-            </div>
+          {RING_STATS.map((s) => (
+            <StatRing
+              key={s.label}
+              percent={s.percent}
+              display={s.display}
+              label={s.label}
+              source={s.source}
+            />
           ))}
+          <TimeStatCard />
         </div>
 
         <div className={styles.header}>
