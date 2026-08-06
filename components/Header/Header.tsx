@@ -126,7 +126,7 @@ export default function Header() {
 
       <header className={styles.header}>
         <div className={styles.inner}>
-          <a href="#top" className={styles.logo}>
+          <a href="/" className={styles.logo}>
             <span className={styles.logoMark}>
               <LogoMark />
             </span>
